@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+h1 { font-weight: 500; letter-spacing: -.036em; }
+h2, h3, .contactlist strong { font-weight: 600; }
+.portrait img { animation: portrait-arrive 1.5s ease-out both; }
+.portrait::before, .portrait::after {
+  content: '✦';
+  position: absolute;
+  z-index: 1;
+  color: #a77e34;
+  font-size: clamp(21px, 3vw, 37px);
+  line-height: 1;
+  pointer-events: none;
+  animation: sparkle 3.8s ease-in-out 3;
+}
+.portrait::before { left: 3%; top: 10%; }
+.portrait::after { right: 3%; bottom: 8%; animation-delay: .7s; }
+.photo-arrive { animation: photo-arrive .68s cubic-bezier(.2,.65,.2,1) both; }
+.photos img { transition: transform .48s cubic-bezier(.2,.65,.2,1); }
+.photos a:is(:hover,:focus-visible) img { transform: scale(1.06); }
+.music {
+  position: fixed;
+  z-index: 2;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+}
+.music button {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 16px;
+  background: var(--cream);
+  color: var(--olive);
+  box-shadow: 0 3px 16px #44301522;
+  font: 600 .85rem var(--sans);
+}
+.music button span { margin-right: 4px; color: var(--gold); }
+.music-status:not(:empty) {
+  display: block;
+  padding: .3rem .65rem;
+  color: var(--ink);
+  background: var(--cream);
+  font-size: .8rem;
+}
+footer { padding-bottom: 70px; }
+@keyframes portrait-arrive {
+  from { transform: scale(.98); opacity: .65; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes sparkle {
+  50% { transform: translateY(-7px) rotate(14deg); opacity: .52; }
+}
+@keyframes photo-arrive {
+  from { transform: translateY(17px); opacity: .5; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait img, .portrait::before, .portrait::after, .photo-arrive { animation: none; }
+  .photos img { transition: none; }
+  .photos a:is(:hover,:focus-visible) img { transform: none; }
+}
+.invitation-cover:not([hidden]) {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 22px;
+  background: radial-gradient(ellipse at top, #f7e9c9, transparent 57%), var(--paper);
+}
+.cover-card {
+  text-align: center;
+  width: min(100%, 580px);
+  padding: clamp(44px, 9vw, 90px) clamp(15px, 5vw, 48px);
+  background: var(--cream);
+  border: 1px solid var(--line);
+  outline: 1px solid var(--line);
+  outline-offset: -8px;
+  border-radius: 48% 48% 8px 8px / 24% 24% 8px 8px;
+  box-shadow: 0 18px 70px #6d4b2320;
+  animation: photo-arrive .6s ease-out both;
+}
+.cover-card h2 { font-size: clamp(2.85rem, 12vw, 6rem); line-height: .92; margin: 16px 0; }
+.cover-card h2 i { display: block; color: var(--gold); font-size: .64em; font-weight: 500; }
+.cover-card .dates { margin-bottom: 24px; }
+.cover-card button { cursor: pointer; font-family: var(--sans); }
+.cover-card .button { border: 1px solid var(--olive); min-height: 44px; }
+.invitation-opening .welcome { animation: photo-arrive .55s ease-out both; }
+.programme-days {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -12px auto 26px;
+}
+.programme-days a {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 6px 13px;
+  border-radius: 30px;
+  border: 1px solid var(--line);
+  color: var(--olive);
+  text-decoration: none;
+  font-size: .83rem;
+}
+.programme-days a:hover, .day:target { background: #f5ebd7; }
+.day { scroll-margin-top: 16px; }
+.daybody, .welcome { min-width: 0; }
+@media (max-width: 480px) {
+  nav { padding-inline: 15px; }
+  nav div { gap: 10px; }
+  nav a { font-size: .79rem; }
+  .hero h1 { font-size: clamp(2.8rem, 13.5vw, 4.8rem); }
+  .hero { gap: 24px; padding-block: 31px; }
+  .day h3 { font-size: 1.25rem; }
+  .music button { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cover-card, .invitation-opening .welcome { animation: none; }
+}
+
+/* Larger invitation typography with room for narrow screens. */
+@media (min-width: 701px) {
+  .hero h1 { font-size: clamp(4.8rem, 8.3vw, 8.4rem); }
+}
+@media (max-width: 700px) {
+  .hero h1 { font-size: clamp(3.45rem, 15.5vw, 6.4rem); }
+}
+.cover-card h2 { font-size: clamp(3.4rem, 14vw, 7rem); }
+.cover-card h2, .hero h1 { font-weight: 600; }
+.sectionhead h2 { font-size: clamp(2.95rem, 7.2vw, 5.5rem); }
+.intro, .sectionhead > p:not(.eyebrow) { font-size: clamp(1.04rem, 2.4vw, 1.18rem); }
+.eyebrow, .dates, .venue { font-size: .86rem; }
+.day h3 { font-size: clamp(1.56rem, 3.3vw, 2.12rem); }
+.day li p, .time { font-size: .95rem; }
+.date span { font-size: 1.23rem; }
+.contactlist strong { font-size: clamp(1.45rem, 3.5vw, 2.1rem); }
+nav a, .cover-card .button, .programme-days a { font-size: .94rem; }
+@media (max-width: 365px) {
+  nav a { font-size: .84rem; }
+  .cover-card h2 { font-size: clamp(2.9rem, 15vw, 3.4rem); }
+  .hero h1 { font-size: clamp(2.95rem, 16vw, 3.45rem); }
+  .date span { font-size: 1.05rem; }
+}
+.cover-monogram {
+  width: clamp(145px, 34vw, 245px);
+  height: auto;
+  margin: 0 auto;
+}

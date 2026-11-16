@@ -1,0 +1,62 @@
+.photo-envelope { max-width: 660px; margin: auto; }
+.envelope-stage {
+  position: relative;
+  width: min(100%, 550px);
+  height: clamp(310px, 86vw, 530px);
+  margin: auto;
+  isolation: isolate;
+}
+.envelope-back, .envelope-pocket { position: absolute; inset: auto 0 0; }
+.envelope-back {
+  height: 57%;
+  background: #91956c;
+  clip-path: polygon(0 44%, 50% 0, 100% 44%, 100% 100%, 0 100%);
+}
+.envelope-pocket {
+  height: 25%;
+  display: grid;
+  place-items: end center;
+  padding-bottom: 8px;
+  pointer-events: none;
+  clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(145deg,#e2c890,#f8e7bf 53%,#d2ae69);
+}
+.envelope-pocket span { font: 600 20px var(--serif); color: var(--olive); }
+.photo-card {
+  position: absolute;
+  inset: 0 13% 10%;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  padding: clamp(6px, 1.5vw, 12px) clamp(6px, 1.5vw, 12px) 26px;
+  box-shadow: 0 12px 36px #49381742;
+  cursor: zoom-in;
+}
+.photo-card img { width:100%; height:100%; object-fit: contain; background:#eee3ce; }
+.envelope-controls { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:10px; margin-top:20px; }
+.envelope-controls button, .song-link {
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--cream);
+  color: var(--olive);
+  padding: 9px 14px;
+  min-height: 44px;
+  text-decoration: none;
+  font: 600 .85rem var(--sans);
+}
+.envelope-controls button { cursor:pointer; }
+.photo-number { min-width: 49px; text-align:center; font-variant-numeric:tabular-nums; }
+.song-link { display:inline-flex; align-items:center; box-shadow:0 3px 16px #44301522; }
+.petal-shower { position:fixed; inset:0; overflow:hidden; z-index:5; pointer-events:none; }
+.petal {
+  position:absolute; top:-30px; left:var(--x); width:var(--size); height:calc(var(--size) * .84);
+  border-radius: 70% 25% 65% 30%;
+  background: radial-gradient(at 30% 20%,#fff6e6,var(--color) 74%);
+  animation: fall var(--time) var(--delay) linear both;
+}
+@keyframes fall {
+  0% { opacity:0; transform:translate3d(0,0,0) rotate(0deg); }
+  12% { opacity:.95; }
+  90% { opacity:.9; }
+  100% { opacity:0; transform:translate3d(var(--drift),105vh,0) rotate(550deg); }
+}
+@media (prefers-reduced-motion: reduce) { .petal-shower { display:none; } }
